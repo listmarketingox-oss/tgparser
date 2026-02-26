@@ -7,18 +7,3 @@ cmds = ["python3.11 -m pip install -r requirements.txt"]
 [start]
 cmd = "python3.11 tgparse_pro.py"
 ```
-
-**Шаг 5 — Прокрути вниз → `Commit changes` → `Commit changes`**
-
----
-
-**Шаг 6 — Теперь обнови `requirements.txt`**
-
-Кликни на `requirements.txt` → карандаш ✏️ → удали всё и вставь:
-```
-python-telegram-bot==20.7
-telethon==1.34.0
-pandas==2.1.4
-openpyxl==3.1.2
-python-dotenv==1.0.0
-apscheduler==3.10.4
