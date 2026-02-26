@@ -668,10 +668,15 @@ def main():
     app.add_handler(MessageHandler(filters.Regex("^💳 Тарифы$"),     cmd_plans))
     app.add_handler(MessageHandler(filters.Regex("^📊 Мой аккаунт$"), cmd_account))
 
-    # Планировщик автопарсинга
+    # Планировщик автопарсинга — запускается внутри event loop
     scheduler = AsyncIOScheduler()
     scheduler.add_job(run_scheduled_parses, "interval", minutes=30, args=[app])
-    scheduler.start()
+
+    async def on_startup(application):
+        scheduler.start()
+        print("⏰ Планировщик запущен!")
+
+    app.post_init = on_startup
 
     print("🚀 TGParse PRO запущен!")
     app.run_polling(drop_pending_updates=True)
